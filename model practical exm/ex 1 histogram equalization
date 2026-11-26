@@ -1,0 +1,24 @@
+import cv2
+import matplotlib.pyplot as plt
+
+img = cv2.imread(r"C:\Users\DELL\Documents\computer vision lab\sample.jpeg")
+
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+equalized = cv2.equalizeHist(gray)
+
+cv2.imshow("Original Image", gray)
+cv2.imshow("Equalized Image", equalized)
+
+plt.subplot(1, 2, 1)
+plt.hist(gray.ravel(), bins=256, range=[0, 256])
+plt.title("Original Histogram")
+
+plt.subplot(1, 2, 2)
+plt.hist(equalized.ravel(), bins=256, range=[0, 256])
+plt.title("Equalized Histogram")
+
+plt.show()
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
